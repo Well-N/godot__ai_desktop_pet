@@ -1,0 +1,744 @@
+[gd_scene load_steps=66 format=3 uid="uid://b06pxq0wh8u77"]
+
+[ext_resource type="Script" uid="uid://b7b58mh73k10y" path="res://脚本/Pet.gd" id="1_k67gf"]
+[ext_resource type="Texture2D" uid="uid://cnil0u385ivcq" path="res://资源/qq_ghost.png" id="2_k67gf"]
+[ext_resource type="Script" uid="uid://67y0ni6rccu6" path="res://脚本/默认多轮AI.gd" id="3_q7mfp"]
+[ext_resource type="FontFile" uid="uid://bvho2bpoys764" path="res://字体/ipix_12px.ttf" id="3_vphim"]
+[ext_resource type="Script" uid="uid://ciajjvngudq3h" path="res://脚本/AI_3.gd" id="5_880u4"]
+[ext_resource type="FontFile" uid="uid://6ia0kjvf1tjb" path="res://字体/retro-pixel-thick.ttf" id="5_mw8xw"]
+[ext_resource type="Script" uid="uid://c3njjv3k3i8ya" path="res://脚本/panel_mine.gd" id="5_qxp6e"]
+[ext_resource type="FontFile" uid="uid://cy5lwy2ls0stg" path="res://字体/ark-pixel-10px-monospaced-zh_cn.ttf" id="7_880u4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k67gf"]
+radius = 4.31446
+
+[sub_resource type="Animation" id="Animation_qxp6e"]
+resource_name = "FuMo"
+length = 1.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pet/body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+}
+
+[sub_resource type="Animation" id="Animation_vphim"]
+resource_name = "LanYao"
+length = 1.05
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pet/body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11, 12]
+}
+
+[sub_resource type="Animation" id="Animation_k67gf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pet/body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_mw8xw"]
+resource_name = "awake"
+length = 0.6
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pet/body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [27, 28, 29]
+}
+
+[sub_resource type="Animation" id="Animation_ynmfj"]
+resource_name = "sleep"
+length = 0.6
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pet/body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [18, 19, 20]
+}
+
+[sub_resource type="Animation" id="Animation_giybr"]
+resource_name = "sleep_loop"
+length = 9.6
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pet/body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 2.7, 3, 3.3, 3.6, 3.9, 4.2, 4.5, 4.8, 5.1, 5.4, 5.7, 6, 6.3, 6.6, 6.9, 7.2, 7.5, 7.8, 8.1, 8.4, 8.7, 9, 9.3, 9.6, 12.8, 13, 13.2, 13.4, 13.6, 13.8, 14, 14.2, 14.4, 14.6, 14.8, 15, 15.2, 15.4, 15.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [22, 23, 24, 25, 22, 23, 24, 25, 22, 23, 24, 25, 22, 23, 24, 25, 22, 23, 24, 25, 22, 23, 24, 25, 22, 23, 24, 25, 22, 23, 24, 25, 25, 28, 29, 30, 31, 32, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+}
+
+[sub_resource type="Animation" id="Animation_ej46f"]
+resource_name = "stand"
+length = 9.6
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pet/body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4, 4.2, 4.4, 4.6, 4.8, 5, 5.2, 5.4, 5.6, 5.8, 6, 6.2, 6.4, 6.6, 6.8, 7, 7.2, 7.4, 7.6, 7.8, 8, 8.2, 8.4, 8.6, 8.8, 9, 9.2, 9.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_q7mfp"]
+resource_name = "walk"
+length = 1.2
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pet/body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [30, 31, 32, 33, 34, 35]
+}
+
+[sub_resource type="Animation" id="Animation_880u4"]
+resource_name = "woo"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pet/body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [54, 55]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tlno2"]
+_data = {
+&"FuMo": SubResource("Animation_qxp6e"),
+&"LanYao": SubResource("Animation_vphim"),
+&"RESET": SubResource("Animation_k67gf"),
+&"awake": SubResource("Animation_mw8xw"),
+&"sleep": SubResource("Animation_ynmfj"),
+&"sleep_loop": SubResource("Animation_giybr"),
+&"stand": SubResource("Animation_ej46f"),
+&"walk": SubResource("Animation_q7mfp"),
+&"woo": SubResource("Animation_880u4")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qa4me"]
+animation = &"FuMo"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bxfqm"]
+animation = &"LanYao"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gde2w"]
+animation = &"awake"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bwteu"]
+animation = &"sleep"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2gutj"]
+animation = &"sleep_loop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m7hdw"]
+animation = &"stand"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_365p2"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q7mfp"]
+animation = &"woo"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iyhcf"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tidh6"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k67gf"]
+advance_mode = 2
+advance_condition = &"is_standing_1"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vphim"]
+advance_mode = 2
+advance_condition = &"is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ynmfj"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_880u4"]
+priority = 3
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_LanYaoing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q7mfp"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_giybr"]
+priority = 3
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_sleeping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tlno2"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qa4me"]
+priority = 2
+advance_mode = 2
+advance_condition = &"is_FuMoing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bxfqm"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sktik"]
+advance_mode = 2
+advance_condition = &"is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bwteu"]
+advance_mode = 2
+advance_condition = &"is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2gutj"]
+advance_mode = 2
+advance_condition = &"is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m7hdw"]
+advance_mode = 2
+advance_condition = &"is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gde2w"]
+advance_mode = 2
+advance_condition = &"is_standing_3"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_365p2"]
+priority = 0
+advance_mode = 2
+advance_condition = &"is_dragging"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mw8xw"]
+advance_mode = 2
+advance_condition = &"is_dragging"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qxp6e"]
+advance_mode = 2
+advance_condition = &"is_dragging"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_odpl7"]
+advance_mode = 2
+advance_condition = &"is_dragging"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ilhqp"]
+priority = 0
+advance_mode = 2
+advance_condition = &"is_dragging"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qfh3i"]
+states/End/position = Vector2(1071, 127)
+states/FuMo/node = SubResource("AnimationNodeAnimation_qa4me")
+states/FuMo/position = Vector2(442, 122)
+states/LanYao/node = SubResource("AnimationNodeAnimation_bxfqm")
+states/LanYao/position = Vector2(613, 711)
+states/Start/position = Vector2(60, 141)
+states/awake/node = SubResource("AnimationNodeAnimation_gde2w")
+states/awake/position = Vector2(1114, 711)
+states/sleep/node = SubResource("AnimationNodeAnimation_bwteu")
+states/sleep/position = Vector2(900, 711)
+states/sleep_loop/node = SubResource("AnimationNodeAnimation_2gutj")
+states/sleep_loop/position = Vector2(1002, 711)
+states/stand/node = SubResource("AnimationNodeAnimation_m7hdw")
+states/stand/position = Vector2(442, 350)
+states/walk/node = SubResource("AnimationNodeAnimation_365p2")
+states/walk/position = Vector2(732, 350)
+states/woo/node = SubResource("AnimationNodeAnimation_q7mfp")
+states/woo/position = Vector2(1211, 182)
+transitions = ["sleep", "sleep_loop", SubResource("AnimationNodeStateMachineTransition_iyhcf"), "sleep_loop", "awake", SubResource("AnimationNodeStateMachineTransition_tidh6"), "walk", "stand", SubResource("AnimationNodeStateMachineTransition_k67gf"), "stand", "walk", SubResource("AnimationNodeStateMachineTransition_vphim"), "Start", "stand", SubResource("AnimationNodeStateMachineTransition_ynmfj"), "stand", "LanYao", SubResource("AnimationNodeStateMachineTransition_880u4"), "LanYao", "stand", SubResource("AnimationNodeStateMachineTransition_q7mfp"), "stand", "sleep", SubResource("AnimationNodeStateMachineTransition_giybr"), "awake", "stand", SubResource("AnimationNodeStateMachineTransition_tlno2"), "stand", "FuMo", SubResource("AnimationNodeStateMachineTransition_qa4me"), "FuMo", "stand", SubResource("AnimationNodeStateMachineTransition_bxfqm"), "LanYao", "walk", SubResource("AnimationNodeStateMachineTransition_sktik"), "sleep", "walk", SubResource("AnimationNodeStateMachineTransition_bwteu"), "sleep_loop", "walk", SubResource("AnimationNodeStateMachineTransition_2gutj"), "awake", "walk", SubResource("AnimationNodeStateMachineTransition_m7hdw"), "woo", "stand", SubResource("AnimationNodeStateMachineTransition_gde2w"), "stand", "woo", SubResource("AnimationNodeStateMachineTransition_365p2"), "awake", "woo", SubResource("AnimationNodeStateMachineTransition_mw8xw"), "sleep_loop", "woo", SubResource("AnimationNodeStateMachineTransition_qxp6e"), "sleep", "woo", SubResource("AnimationNodeStateMachineTransition_odpl7"), "LanYao", "woo", SubResource("AnimationNodeStateMachineTransition_ilhqp")]
+graph_offset = Vector2(0, 215.704)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gde2w"]
+size = Vector2(54, 35)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vphim"]
+radius = 40.0125
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vphim"]
+size = Vector2(135, 104)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynmfj"]
+bg_color = Color(0.496154, 0.301527, 1.92523e-07, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.196078)
+shadow_size = 1
+shadow_offset = Vector2(0, 3.14)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mw8xw"]
+bg_color = Color(0.720677, 0.446765, 1.92523e-07, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.196078)
+shadow_size = 1
+shadow_offset = Vector2(0, 3.14)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qxp6e"]
+bg_color = Color(1, 0.627451, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.196078)
+shadow_size = 1
+shadow_offset = Vector2(0, 3.14)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_880u4"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+shadow_size = 2
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tlno2"]
+bg_color = Color(0.532208, 0.00529127, 1.44392e-07, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 1
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7mfp"]
+bg_color = Color(0.532208, 0.00529127, 1.44392e-07, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 1
+shadow_offset = Vector2(0, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_giybr"]
+bg_color = Color(1, 0.0705882, 0.0313726, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 1
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qa4me"]
+bg_color = Color(0.417945, 0.28175, 0.135764, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 1
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bxfqm"]
+bg_color = Color(0.929911, 0.634533, 0.448757, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 1
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sktik"]
+bg_color = Color(0.85, 0.85, 0.85, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_offset = Vector2(0, 1.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gde2w"]
+bg_color = Color(0.85, 0.85, 0.85, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_offset = Vector2(0, 1.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bwteu"]
+bg_color = Color(0.134588, 0.320066, 0.524334, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m7hdw"]
+bg_color = Color(0.130027, 0.497394, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="Main" type="Node2D"]
+
+[node name="Pet" type="CharacterBody2D" parent="."]
+position = Vector2(191, 59)
+script = ExtResource("1_k67gf")
+
+[node name="body" type="Sprite2D" parent="Pet"]
+position = Vector2(5, -9)
+scale = Vector2(1.72484, 1.72484)
+texture = ExtResource("2_k67gf")
+hframes = 6
+vframes = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pet"]
+visible = false
+position = Vector2(-4, 0)
+scale = Vector2(2.46384, 2.46384)
+shape = SubResource("CircleShape2D_k67gf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pet"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_tlno2")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Pet"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_qfh3i")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_FuMoing = false
+parameters/conditions/is_LanYaoing = false
+parameters/conditions/is_dragging = false
+parameters/conditions/is_sleeping = false
+parameters/conditions/is_standing_1 = false
+parameters/conditions/is_standing_3 = false
+parameters/conditions/is_walking = false
+
+[node name="chin" type="Area2D" parent="Pet"]
+
+[node name="col_chin" type="CollisionShape2D" parent="Pet/chin"]
+position = Vector2(-2, -3)
+shape = SubResource("RectangleShape2D_gde2w")
+
+[node name="drag_area" type="Area2D" parent="Pet"]
+position = Vector2(7, 12)
+
+[node name="col_drag_area" type="CollisionShape2D" parent="Pet/drag_area"]
+position = Vector2(-13, -10)
+shape = SubResource("CircleShape2D_vphim")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Pet"]
+position = Vector2(11.5, -3)
+shape = SubResource("RectangleShape2D_vphim")
+
+[node name="Polygon2D" type="Polygon2D" parent="Pet"]
+visible = false
+position = Vector2(-116, 134)
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(-1, 12, 0, -190, 196, -189, 198, -85, 306, -83, 308, 10, 153, 11)
+
+[node name="menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 284.0
+offset_top = 25.0
+offset_right = 380.0
+offset_bottom = 126.0
+scale = Vector2(1.04752, 1.04752)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="menu"]
+layout_mode = 0
+offset_left = -8.59175
+offset_top = -11.4557
+offset_right = 88.4083
+offset_bottom = 72.5443
+theme_override_constants/separation = 6
+script = ExtResource("3_q7mfp")
+
+[node name="free_walk" type="Button" parent="menu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_disabled_color = Color(0.101961, 0.101961, 0.101961, 0.878431)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("5_mw8xw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ynmfj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mw8xw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qxp6e")
+text = "API KEY"
+
+[node name="chat" type="Button" parent="menu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_disabled_color = Color(0.101961, 0.101961, 0.101961, 0.878431)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_vphim")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ynmfj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mw8xw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qxp6e")
+text = "对话
+"
+
+[node name="gold_miner" type="Button" parent="menu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_disabled_color = Color(0.101961, 0.101961, 0.101961, 0.878431)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_vphim")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ynmfj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mw8xw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qxp6e")
+text = "黄金矿工"
+
+[node name="quit" type="Button" parent="menu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_disabled_color = Color(0.101961, 0.101961, 0.101961, 0.878431)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_vphim")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ynmfj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mw8xw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qxp6e")
+text = "退出"
+
+[node name="AI" type="Node" parent="."]
+script = ExtResource("5_880u4")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="AI"]
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+offset_left = 95.0
+offset_top = 128.0
+offset_right = 310.0
+offset_bottom = 197.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_880u4")
+script = ExtResource("5_qxp6e")
+
+[node name="API_KEY" type="TextEdit" parent="Panel"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 10.0
+offset_right = 206.0
+offset_bottom = 41.0
+text = "请输入"
+placeholder_text = "请输入"
+
+[node name="Button_quit" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 11.0
+offset_bottom = 10.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_tlno2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q7mfp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_giybr")
+
+[node name="Button_save" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 43.0
+offset_right = 203.0
+offset_bottom = 65.0
+theme_override_fonts/font = ExtResource("3_vphim")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qa4me")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bxfqm")
+text = "保存"
+
+[node name="hint" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 41.0
+offset_right = 152.0
+offset_bottom = 67.0
+theme_override_fonts/normal_font = ExtResource("7_880u4")
+theme_override_font_sizes/normal_font_size = 9
+theme_override_font_sizes/bold_font_size = 1
+text = "温馨提示：保存新的API KET后重新打开小幽灵"
+
+[node name="label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 16.0
+offset_right = 63.0
+offset_bottom = 59.0
+theme_override_fonts/font = ExtResource("5_mw8xw")
+text = "API KEY:
+"
+
+[node name="chat_panel" type="Panel" parent="."]
+offset_left = 11.0
+offset_top = 128.0
+offset_right = 374.0
+offset_bottom = 369.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_880u4")
+
+[node name="input_box" type="TextEdit" parent="chat_panel"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 201.0
+offset_right = 290.0
+offset_bottom = 236.0
+placeholder_text = "给youyou发送消息"
+
+[node name="Button_quit" type="Button" parent="chat_panel"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 16.0
+offset_bottom = 15.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_tlno2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q7mfp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_giybr")
+
+[node name="Button_send" type="Button" parent="chat_panel"]
+layout_mode = 0
+offset_left = 298.0
+offset_top = 207.0
+offset_right = 349.0
+offset_bottom = 229.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5_mw8xw")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/hover = SubResource("StyleBoxFlat_qa4me")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qa4me")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bxfqm")
+text = "send
+"
+
+[node name="useless" type="RichTextLabel" parent="chat_panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 15.0
+offset_right = 358.0
+offset_bottom = 187.0
+theme_override_font_sizes/normal_font_size = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_sktik")
+
+[node name="anwser" type="RichTextLabel" parent="chat_panel"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 20.0
+offset_right = 344.0
+offset_bottom = 181.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_gde2w")
+
+[node name="new_message" type="Button" parent="chat_panel"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -47.0
+offset_right = 118.0
+offset_bottom = -5.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5_mw8xw")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_bwteu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_m7hdw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_m7hdw")
+text = "new chat"
+
+[connection signal="animation_finished" from="Pet/AnimationTree" to="Pet" method="_on_animation_tree_animation_finished"]
+[connection signal="animation_started" from="Pet/AnimationTree" to="Pet" method="_on_animation_tree_animation_started"]
+[connection signal="mouse_entered" from="Pet/chin" to="Pet" method="_on_chin_mouse_entered"]
+[connection signal="mouse_exited" from="Pet/chin" to="Pet" method="_on_chin_mouse_exited"]
+[connection signal="mouse_entered" from="Pet/drag_area" to="Pet" method="_on_drag_area_mouse_entered"]
+[connection signal="mouse_exited" from="Pet/drag_area" to="Pet" method="_on_drag_area_mouse_exited"]
+[connection signal="pressed" from="menu/VBoxContainer/free_walk" to="Pet" method="_on_free_walk_pressed"]
+[connection signal="pressed" from="menu/VBoxContainer/chat" to="Pet" method="_on_chat_pressed"]
+[connection signal="pressed" from="menu/VBoxContainer/gold_miner" to="Pet" method="_on_gold_miner_pressed"]
+[connection signal="pressed" from="menu/VBoxContainer/quit" to="Pet" method="_on_quit_pressed"]
+[connection signal="pressed" from="Panel/Button_quit" to="Panel" method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/Button_save" to="Panel" method="_on_button_save_pressed"]
+[connection signal="pressed" from="chat_panel/Button_quit" to="Panel" method="_on_button_quit_pressed"]
+[connection signal="pressed" from="chat_panel/Button_send" to="Pet" method="_on_button_send_pressed"]
+[connection signal="pressed" from="chat_panel/new_message" to="AI" method="_on_new_message_pressed"]
