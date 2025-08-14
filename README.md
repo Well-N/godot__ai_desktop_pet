@@ -63,7 +63,7 @@ https://github.com/QAQ-HYSJ/GoldMiner?tab=readme-ov-file
 使用Godot游戏引擎制作
 使用Aseprite绘制形象
 
-因为是为了朋友生日而制作的，所以小幽灵AI也是为朋友做的，大家可以自己更改AI3.gd脚本里面的应用代码来更改AI模型，另外默认AI.gd是默认的通义千问AI
+因为是为了朋友生日而制作的，所以小幽灵AI也是为朋友做的，大家可以自己更改AI3.gd脚本里面的应用代码来更改AI模型，另外默认AI.gd是默认的通义千问AI，AI.gd是没有多轮对话的脚本
 
 仅供学习交流，非商业用途
 
