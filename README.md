@@ -34,12 +34,6 @@ https://bailian.console.aliyun.com/?apiKey=1&accounttraceid=e8dc1223783d44d0bf4b
 具有多轮对话功能，能够保存对话记忆，如果想开启一个新的对话的话关掉重开就行啦
 
 你可以问它任何问题，和deepseek用起来一样，里面还加了31个海龟汤，是网上找的，直接跟它说玩海龟汤就行
-—————————————————————————————————————————————————————————
-
-解释一下为什么要用通义千问：因为deepseek不适合聊天，open AI需要国外银行卡，Gemini需要梯子，其他模型API不是需要梯子就是太贵太麻烦，通义千问有免费额度，而且调一个小幽灵AI模型也方便
-
-使用的模型是qwen-plus，免费额度是100万token，大概50万字，能用好久呢，后续价格大概1000字0.004块，价格文档链接：
-https://bailian.console.aliyun.com/?apiKey=1&accounttraceid=e8dc1223783d44d0bf4bc04b7f092bfbykkr&tab=doc#/doc/?type=model&url=2766612
 
 —————————————————————————————————————————————————————————
 
