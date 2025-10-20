@@ -24,6 +24,9 @@
 找到“小幽灵AI桌面宠物.exe”，右键，找到添加快捷方式，就能直接在桌面打开啦
 —————————————————————————————————————————————————————————
 @@@如何使用AI对话？@@@
+
+由于是做给朋友的礼物，key只能使用我名下的key，需要使用的朋友需要自行修改模型ID，把模型ID改成自己的
+
 首次使用先输入API，我使用的是阿里云的”通义千问“，下方文档链接：
 https://bailian.console.aliyun.com/?apiKey=1&accounttraceid=e8dc1223783d44d0bf4bc04b7f092bfbykkr&tab=doc#/doc/?type=model&url=2840915
 
